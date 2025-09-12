@@ -1,3 +1,11 @@
+Done
+- 主线程命名改造，和Unity的差不多
+- 去掉其他子进程的数据，能不能改改xperf
+
+TODO:
+- 符号化过程trouble shoot，有时候pdb读取失败会panic，在pdb2里 （只有debug有？）
+- GPU支持， ctrl C支持
+
 # samply
 
 samply is a command line CPU profiler which uses the [Firefox profiler](https://profiler.firefox.com/) as its UI.

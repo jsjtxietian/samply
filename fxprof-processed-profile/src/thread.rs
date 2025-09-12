@@ -283,10 +283,9 @@ impl Thread {
         marker_schemas: &[InternalMarkerSchema],
         string_table: &ProfileStringTable,
     ) -> Result<S::Ok, S::Error> {
-        let thread_name: Cow<str> = match (self.is_main, &self.name) {
-            (true, _) => process_name.into(),
-            (false, Some(name)) => name.into(),
-            (false, None) => format!("Thread <{}>", self.tid).into(),
+        let thread_name: Cow<str> = match &self.name {
+            Some(name) => name.into(),
+            None => format!("Thread <{}>", self.tid).into(),
         };
 
         let thread_register_time = self.start_time;
@@ -302,7 +301,6 @@ impl Thread {
             &self.markers.as_serializable(marker_schemas, string_table),
         )?;
         map.serialize_entry("name", &thread_name)?;
-        map.serialize_entry("isMainThread", &self.is_main)?;
         map.serialize_entry("nativeSymbols", &self.native_symbols)?;
         map.serialize_entry("pausedRanges", &[] as &[()])?;
         map.serialize_entry("pid", &pid)?;

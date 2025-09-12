@@ -617,7 +617,10 @@ impl ProfileContext {
         }
 
         // already tracking this process or its parent?
-        if self.processes.has(pid) || ppid.is_some_and(|k| self.processes.has(k)) {
+        // if self.processes.has(pid) || ppid.is_some_and(|k| self.processes.has(k)) {
+
+        // Ignore child process for now
+        if self.processes.has(pid) {
             return true;
         }
 
