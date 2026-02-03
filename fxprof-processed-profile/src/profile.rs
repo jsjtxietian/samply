@@ -1502,6 +1502,7 @@ impl Serialize for SerializableProfileMeta<'_> {
         map.serialize_entry("version", &24)?; // this version is ignored, only "preprocessedProfileVersion" is used
         map.serialize_entry("usesOnlyOneStackType", &(!self.0.contains_js_frame()))?;
         map.serialize_entry("sourceCodeIsNotOnSearchfox", &true)?;
+        map.serialize_entry("keepProfileThreadOrder", &true)?;
 
         let mut marker_schemas: Vec<InternalMarkerSchema> = self.0.marker_schemas.clone();
         marker_schemas.sort_by(|a, b| a.type_name().cmp(b.type_name()));

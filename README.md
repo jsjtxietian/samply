@@ -1,10 +1,9 @@
-Done
-- 主线程命名改造，和Unity的差不多
-- 去掉其他子进程的数据，能不能改改xperf
-
 TODO:
-- 符号化过程trouble shoot，有时候pdb读取失败会panic，在pdb2里 （只有debug有？）
-- GPU支持， ctrl C支持
+- 主线程命名改造，和Unity的差不多 => Done，改了两块，一个是强制覆盖，一个是主线程的奇妙判定
+- 去掉其他子进程的数据，能不能改改xperf => 先绕开了,不记录子进程
+- 符号化过程trouble shoot，pdb读取失败会panic，在pdb2里 => debug only的 不管了先
+- 和Ultra学习，修改thread名字，强制firefox profiler排序
+
 
 # samply
 

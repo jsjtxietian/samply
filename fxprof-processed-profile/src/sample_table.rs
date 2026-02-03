@@ -118,6 +118,13 @@ impl SampleTable {
             .collect();
         self
     }
+
+    pub fn active_sample_count(&self) -> usize {
+        self.sample_cpu_deltas
+            .iter()
+            .filter(|d| !d.is_zero())
+            .count()
+    }
 }
 
 impl Serialize for SampleTable {

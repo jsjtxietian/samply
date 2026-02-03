@@ -898,6 +898,11 @@ impl ProfileContext {
             let thread_label = make_thread_label(&mut self.profile, Some(thread_name), pid, tid);
             process.main_thread_label = thread_label;
             self.profile.set_thread_tid(thread_handle, tid);
+            if let Some(n) = name.as_deref() {
+                if !n.is_empty() {
+                    self.profile.set_thread_name(thread_handle, n);
+                }
+            }
             let thread = Thread::new(name, true, thread_handle, thread_label, pid, tid);
             self.threads.add(tid, timestamp_raw, thread);
             self.thread_handles
@@ -952,6 +957,11 @@ impl ProfileContext {
             let thread_label = make_thread_label(&mut self.profile, Some(thread_name), pid, tid);
             process.main_thread_label = thread_label;
             self.profile.set_thread_tid(thread_handle, tid);
+            if let Some(n) = name.as_deref() {
+                if !n.is_empty() {
+                    self.profile.set_thread_name(thread_handle, n);
+                }
+            }
             let thread = Thread::new(name, true, thread_handle, thread_label, pid, tid);
             self.threads.add(tid, timestamp_raw, thread);
             self.thread_handles

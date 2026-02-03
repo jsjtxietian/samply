@@ -195,6 +195,11 @@ impl Thread {
     }
 
     pub fn cmp_for_json_order(&self, other: &Thread) -> Ordering {
+        let ordering = other.samples.active_sample_count().cmp(&self.samples.active_sample_count());
+        if ordering != Ordering::Equal {
+            return ordering;
+        }
+    
         let ordering = (!self.is_main).cmp(&(!other.is_main));
         if ordering != Ordering::Equal {
             return ordering;
